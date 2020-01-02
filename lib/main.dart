@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 
 import 'app.dart';
 import 'config/envConfig.dart';
+import 'config/prodConfig.dart';
+import 'service/net/netManager.dart';
 
 Future<Null> main() async{
   Future<Null> _reportError(dynamic error, dynamic stackTrace) async {
     return Future.delayed(const Duration(seconds: 2), (){
-      debugPrint("_reportError");
+      debugPrint("_reportError:"+error);
       return Future.value();
     });
   }
@@ -28,10 +30,10 @@ Future<Null> main() async{
 
   debugPrint = (String message, {int wrapWidth}) {};  //关闭打印
 
+  _initNet();
   var configuredApp = EnvConfig(
-    debug: false,
-    appName: 'example',
-    apiBaseUrl: 'http://api.example.com/',
+    debug: Config.debug,
+    appName: Config.appName,
     child: App(),
   );
   runZoned<Future<Null>>(() async {
@@ -39,6 +41,10 @@ Future<Null> main() async{
   }, onError: (error, stackTrace) async{
     await _reportError(error, stackTrace);
   });
+}
 
+//初始化网络
+void _initNet(){
+  NetManager().init(Config.apiBaseUrl);
 }
 

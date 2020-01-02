@@ -5,12 +5,10 @@ class EnvConfig extends InheritedWidget{
   EnvConfig({
     @required this.debug,
     @required this.appName,
-    @required this.apiBaseUrl,
     @required Widget child
   }) : super(child: child);
 
   final String appName;
-  final String apiBaseUrl;
   final bool debug;
 
   static EnvConfig of(BuildContext context){

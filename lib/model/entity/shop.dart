@@ -1,4 +1,4 @@
-import 'package:flutter_architecture/model/user.dart';
+import 'package:flutter_architecture/model/entity/user.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'shop.g.dart';

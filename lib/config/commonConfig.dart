@@ -17,4 +17,10 @@ class CommonConfig{
   static const REFRESH_LANGUAGE = "refreshLanguageApp";
   static const THEME_COLOR = "theme-color";
   static const LOCALE = "locale";
+
+  static const VERSION = "2";
+  static const PLATFORM_ANDROID = "android";
+  static const PLATFORM_IOS = "ios";
+
+  static const String PEM="XXXXX"; //自签名的文件内容
 }
