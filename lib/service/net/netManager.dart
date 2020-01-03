@@ -102,12 +102,7 @@ class NetManager {
     try {
       Response response = await dio.download(path, localPath,queryParameters: params,data: data,cancelToken: cancelToken,onReceiveProgress: downloadProgress);
       if (response != null) {
-        BaseEntity entity = BaseEntity<T>.fromJson(response.data);
-        if (entity.code == BaseEntity.success) {
-          success(entity.data);
-        } else {
-          error(ErrorEntity(code: entity.code, message: entity.message));
-        }
+        success(response.data);
       } else {
         error(ErrorEntity(code: -1, message: "未知错误"));
       }

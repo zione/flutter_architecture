@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture/config/envConfig.dart';
 import 'package:flutter_architecture/generated/i18n.dart';
+import 'package:flutter_architecture/model/dao/pdf_dao.dart';
 import 'package:flutter_architecture/model/entity/shop.dart';
 import 'package:flutter_architecture/model/entity/user.dart';
 import 'package:flutter_architecture/utils/screen_util.dart';
@@ -36,7 +37,8 @@ class MainPage extends StatelessWidget{
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.error),
         onPressed: (){
-          UserDao.login("13661660459", "654321");
+//          UserDao.login("13661660459", "654321");
+          PdfDao.downloadPdf();
         },
       ),
     );
