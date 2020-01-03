@@ -6,12 +6,27 @@ import 'package:flutter_architecture/model/dao/pdf_dao.dart';
 import 'package:flutter_architecture/model/entity/shop.dart';
 import 'package:flutter_architecture/model/entity/user.dart';
 import 'package:flutter_architecture/utils/screen_util.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import '../model/dao/user_dao.dart';
 
 class MainPage extends StatelessWidget{
+
+  void showToast(){
+    Fluttertoast.showToast(
+        msg: "This is Center Short Toast",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIos: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -23,22 +38,25 @@ class MainPage extends StatelessWidget{
       ),
       body: Container(
         color: Colors.red,
-        child: Center(
-          child: Container(
-            color: Colors.yellow,
-            width: SU.w(100),
-            height: SU.w(100),
-            child: Center(
-              child: Text(S.of(context).submit),
-            ),
-          ),
+        child: new Column(
+          children: <Widget>[
+            FlatButton(
+              child: Icon(Icons.settings),
+              onPressed: (){
+//                PdfDao.setDownload(true);
+
+              },
+            )
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.error),
+        child: Icon(Icons.search),
         onPressed: (){
 //          UserDao.login("13661660459", "654321");
-          PdfDao.downloadPdf();
+          PdfDao.hasDownload().then((bool hasload){
+            debugPrint("hasload: ${hasload??false}");
+          });
         },
       ),
     );
