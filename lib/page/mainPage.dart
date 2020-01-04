@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_architecture/config/envConfig.dart';
 import 'package:flutter_architecture/generated/i18n.dart';
 import 'package:flutter_architecture/model/dao/pdf_dao.dart';
+import 'package:flutter_architecture/model/dao/student_dao.dart';
 import 'package:flutter_architecture/model/entity/shop.dart';
+import 'package:flutter_architecture/model/entity/student.dart';
 import 'package:flutter_architecture/model/entity/user.dart';
 import 'package:flutter_architecture/utils/screen_util.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -44,7 +46,8 @@ class MainPage extends StatelessWidget{
               child: Icon(Icons.settings),
               onPressed: (){
 //                PdfDao.setDownload(true);
-
+                  Student s = new Student(0, "h", 12);
+                  StudentDao().insert(s);
               },
             )
           ],
@@ -54,8 +57,12 @@ class MainPage extends StatelessWidget{
         child: Icon(Icons.search),
         onPressed: (){
 //          UserDao.login("13661660459", "654321");
-          PdfDao.hasDownload().then((bool hasload){
-            debugPrint("hasload: ${hasload??false}");
+//          PdfDao.hasDownload().then((bool hasload){
+//            debugPrint("hasload: ${hasload??false}");
+//          });
+          StudentDao().getStudentList()
+              .then((List<Student> list){
+            debugPrint("Student: $list");
           });
         },
       ),
