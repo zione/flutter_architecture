@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'app.dart';
 import 'config/envConfig.dart';
 import 'config/prodConfig.dart';
+import 'route/routes.dart';
 import 'service/net/netManager.dart';
+import 'package:fluro/fluro.dart';
 
 Future<Null> main() async{
   Future<Null> _reportError(dynamic error, dynamic stackTrace) async {
@@ -29,7 +31,7 @@ Future<Null> main() async{
   };
 
   debugPrint = (String message, {int wrapWidth}) {};  //关闭打印
-
+  _initRoute();
   _initNet();
   var configuredApp = EnvConfig(
     debug: Config.debug,
@@ -47,4 +49,11 @@ Future<Null> main() async{
 void _initNet(){
   NetManager().init(Config.apiBaseUrl);
 }
+
+void _initRoute(){
+  final router = Router();
+  Routes.configureRoutes(router);
+  Routes.router = router;
+}
+
 

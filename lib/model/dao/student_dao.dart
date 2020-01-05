@@ -4,7 +4,9 @@ import 'package:sqflite/sqflite.dart';
 
 class StudentDao extends BaseDBProvider{
   final String _tableName = "student";
-  final String _columnId = "_id";
+  final String _columnId = "id";
+  final String _columnName = "name";
+  final String _columnAge = "age";
 
   @override
   tableName() {
@@ -16,7 +18,7 @@ class StudentDao extends BaseDBProvider{
     return tableBaseString(_tableName, _columnId)+
       '''
       name text not null,
-      age integer
+      age integer)
       ''';
   }
 
@@ -29,7 +31,7 @@ class StudentDao extends BaseDBProvider{
   Future<Student> getStudentById(String id) async{
     Database db = await getDataBase();
     List<Map<String, dynamic>> maps =
-        await db.query(_tableName, where: "_id = ?",
+        await db.query(_tableName, where: "$_columnId = ?",
         whereArgs: [id]);
     if (maps.length > 0){
       Student s = Student.fromJson(maps.first);

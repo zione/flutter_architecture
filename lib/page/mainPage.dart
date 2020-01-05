@@ -14,6 +14,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import '../model/dao/user_dao.dart';
+import '../route/routes.dart';
+import 'secondPage.dart';
 
 class MainPage extends StatelessWidget{
 
@@ -46,7 +48,7 @@ class MainPage extends StatelessWidget{
               child: Icon(Icons.settings),
               onPressed: (){
 //                PdfDao.setDownload(true);
-                  Student s = new Student(0, "h", 12);
+                  Student s = new Student(1, "h", 12);
                   StudentDao().insert(s);
               },
             )
@@ -60,10 +62,11 @@ class MainPage extends StatelessWidget{
 //          PdfDao.hasDownload().then((bool hasload){
 //            debugPrint("hasload: ${hasload??false}");
 //          });
-          StudentDao().getStudentList()
-              .then((List<Student> list){
-            debugPrint("Student: $list");
-          });
+//          StudentDao().getStudentList()
+//              .then((List<Student> list){
+//            debugPrint("Student: ${json.encode(list)}");
+//          });
+            Routes.navigateTo(context, Routes.seconde);
         },
       ),
     );

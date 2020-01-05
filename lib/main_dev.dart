@@ -8,6 +8,8 @@ import 'config/devConfig.dart';
 import 'config/envConfig.dart';
 
 import 'service/net/netManager.dart';
+import 'package:fluro/fluro.dart';
+import 'route/routes.dart';
 
 
 Future<Null> main() async{
@@ -30,6 +32,7 @@ Future<Null> main() async{
     );
   };
 
+  _initRoute();
   _initNet();
   var configuredApp = EnvConfig(
     debug: Config.debug,
@@ -47,4 +50,10 @@ Future<Null> main() async{
 //初始化网络
 void _initNet(){
   NetManager().init(Config.apiBaseUrl);
+}
+
+void _initRoute(){
+  final router = Router();
+  Routes.configureRoutes(router);
+  Routes.router = router;
 }
