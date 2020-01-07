@@ -37,6 +37,7 @@ dependencies:
 #  image_cropper
 #  photo_view
 #  flutter_easyrefresh
+#  pull_to_refresh: ^1.5.0
 #  event_bus
 #  flutter_swiper
 #  chewie  视频播放
@@ -49,6 +50,7 @@ dependencies:
 #  Flutter_cached_network_image
 #  Fast_qr_reader_view
 #  Flutter_spinkit
+#  crypto
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
